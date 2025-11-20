@@ -9,8 +9,8 @@ const CreateNewMessage = ({ createNewMessage }) => {
         const formulario = event.target
         const message_value = formulario.message.value
         createNewMessage(message_value)
-        //Limpia los campos del formulario
         formulario.reset()
+        console.log('Mensaje enviado:', message_value)
     }
     return (
         <form onSubmit={handleSubmit} className='create-message-container'>

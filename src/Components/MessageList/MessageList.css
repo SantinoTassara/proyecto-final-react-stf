@@ -33,20 +33,13 @@
 
 .message-bubble {
     max-width: 55%;
-    padding: 12px 16px;
+    padding: 8px 12px;
     border-radius: 16px;
     word-wrap: break-word;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
     background-color: rgba(245, 245, 245, 0.404);
 }
 
-.message-bubble {
-    max-width: 55%;
-    padding: 12px 16px;
-    border-radius: 16px;
-    word-wrap: break-word;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
-}
 
 .message-meta {
     display: flex;

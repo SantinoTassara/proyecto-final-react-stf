@@ -7,7 +7,7 @@ import ChatDetail from "../../Components/ChatDetails/ChatDetails.jsx";
 import "./ChatScreen.css";
 
 const ChatScreen = () => {
-    const [contacts, setContacts] = useState(null);
+    const [contacts, setContacts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [selectedChatId, setSelectedChatId] = useState(null);
@@ -51,16 +51,17 @@ const ChatScreen = () => {
 
 
     function addNewContact(name) {
-        const new_contact = {
-            id: contacts.length + 1,
-            user_id: contacts.length + 1,
-            name: name,
-            profile_picture: 'https://via.placeholder.com/150',
-            last_connection: 'ahora',
-            is_connected: true
-        }
         setContacts(
             (prev_state) => {
+                const new_contact = {
+                    id: contacts.length + 1,
+                    user_id: contacts.length + 1,
+                    name: name,
+                    profile_picture: 'https://via.placeholder.com/150',
+                    last_connection: 'ahora',
+                    is_connected: true,
+                    messages: []
+                }
                 return [...prev_state, new_contact]
             }
         )
@@ -75,18 +76,22 @@ const ChatScreen = () => {
             created_at: 'Hoy',
             status: 'VIEWED'
         }
-        setContacts(
-            (prev_state) => {
-                return prev_state.map(
-                    (chat) => {
-                        if (Number(chat.id) === Number(chat_id)) {
-                            chat.message = [...chat.message, new_message]
-                        }
-                        return chat
-                    }
-                )
-            }
-        )
+        setContacts(prev_state => {
+            return prev_state.map(chat => {
+                if (Number(chat.id) === Number(chat_id)) {
+                    const chatMessages = chat.message ?? chat.messages ?? [];
+                    return { ...chat, messages: [...chatMessages, new_message] };
+                }
+                return chat;
+            });
+        });
+
+        // actualizar chatDetail para que la UI refleje el nuevo mensaje inmediatamente
+        setChatDetail(prev => {
+            if (!prev) return prev;
+            const prevMsgs = prev.messages ?? [];
+            return { ...prev, messages: [...prevMsgs, new_message] };
+        });
     }
 
 
