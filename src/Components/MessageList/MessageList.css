@@ -8,29 +8,27 @@
     background-size: cover;
 }
 
-.empty-messages {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: #333;
-}
-
+/* mensajes */
 .messages-list {
     display: flex;
     flex: 1;
     flex-direction: column;
     gap: 8px;
     padding: 16px;
-
 }
 
+/* item base */
 .message-item {
     display: flex;
     margin: 4px 0;
 }
 
+/* mis mensajes a la derecha */
+.message-item.Yo {
+    justify-content: flex-end;
+}
+
+/* burbuja base */
 .message-bubble {
     max-width: 55%;
     padding: 8px 12px;
@@ -38,25 +36,28 @@
     word-wrap: break-word;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
     background-color: rgba(245, 245, 245, 0.404);
+    color: #111;
 }
 
+/* estilo para mis mensajes */
+.message-bubble.Yo {
+    background-color: #55c2f5;
+    color: #fff;
+    border-radius: 16px 16px 4px 16px;
+}
 
+/* metadatos */
 .message-meta {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 4px;
-    margin-top: 4px;
+    gap: 8px;
+    margin-top: 6px;
     font-size: 12px;
-    color: #888;
 }
 
-.message-time {
-    font-size: 12px;
-    color: #888;
-}
-
-.message-author {
-    font-size: 12px;
-    color: #555;
+/* ajustar colores cuando es mío */
+.message-bubble.Yo .message-time,
+.message-bubble.Yo .message-author {
+    color: rgba(255, 255, 255, 0.9);
 }
