@@ -9,7 +9,7 @@ const ChatDetail = ({ chatDetail, createNewMessage }) => {
     return (
         <div className="chat-details-container">
             <div className="chat-details-header">
-                <img src={chatDetail.profile_picture || "/placeholder.svg"} alt={chatDetail.name} className="header-avatar" />
+                <img src={chatDetail.profile_picture} alt={chatDetail.name} className="header-avatar" />
                 <div className="header-info">
                     <h2>{chatDetail.name}</h2>
                     <span className="header-status">{chatDetail.is_connected ? 'En línea' : 'Desconectado'}</span>

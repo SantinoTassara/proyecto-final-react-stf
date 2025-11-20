@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AddNewContact from "../../Components/AddNewContact/AddNewContact.jsx";
 
 import "./ChatList.css";
 
@@ -22,6 +23,9 @@ const ChatList = ({ contacts, addNewContact }) => {
                     );
                 })
             }
+            <div className="add-contact-wrapper">
+                <AddNewContact addNewContact={addNewContact} />
+            </div>
         </div>
     );
 }

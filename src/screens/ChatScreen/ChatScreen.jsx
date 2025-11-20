@@ -7,7 +7,7 @@ import ChatDetail from "../../Components/ChatDetails/ChatDetails.jsx";
 import "./ChatScreen.css";
 
 const ChatScreen = () => {
-    const [contacts, setContacts] = useState([]);
+    const [contacts, setContacts] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [selectedChatId, setSelectedChatId] = useState(null);
@@ -54,10 +54,10 @@ const ChatScreen = () => {
         setContacts(
             (prev_state) => {
                 const new_contact = {
-                    id: contacts.length + 1,
-                    user_id: contacts.length + 1,
+                    id: prev_state.length + 1,
+                    user_id: prev_state.length + 1,
                     name: name,
-                    profile_picture: 'https://via.placeholder.com/150',
+                    profile_picture: 'https://media.istockphoto.com/id/1208175274/es/vector/icono-vectorial-de-avatar-elemento-simple-illustrationavatar-icono-vectorial-ilustraci%C3%B3n.jpg?s=612x612&w=0&k=20&c=wxDf-xpKxb7uUvZ3YiCY6er6Lx__wE3gDaLqlpi0TKM=',
                     last_connection: 'ahora',
                     is_connected: true,
                     messages: []
@@ -68,32 +68,65 @@ const ChatScreen = () => {
     }
 
     function createNewMessage(message) {
-        const new_message = {
-            id: chatDetail.message.length + 1,
-            content: message,
-            author_id: 50, //Aca iria MI id, ponemos un valor cualquiera
-            author_name: 'Yo',
-            created_at: 'Hoy',
-            status: 'VIEWED'
-        }
-        setContacts(prev_state => {
-            return prev_state.map(chat => {
-                if (Number(chat.id) === Number(chat_id)) {
-                    const chatMessages = chat.message ?? chat.messages ?? [];
-                    return { ...chat, messages: [...chatMessages, new_message] };
-                }
-                return chat;
-            });
-        });
+        setContacts(
+            (prev_state) => {
+                return prev_state.map(
+                    (chat) => {
+                        if (Number(chat.id) === Number(chat_id)) {
+                            const nextId = (chat.messages?.reduce((max, m) => Math.max(max, m.id), 0) || 0) + 1;
+                            const new_message = {
+                                id: nextId,
+                                content: message,
+                                author_id: 50, //Aca iria MI id
+                                author_name: 'Yo',
+                                created_at: 'Hoy',
+                                status: 'VIEWED'
+                            }
+                            return {
+                                ...chat,
+                                messages: [...(chat.messages || []), new_message]
+                            }
+                        }
+                        return chat
+                    }
+                )
+            }
+        )
 
-        // actualizar chatDetail para que la UI refleje el nuevo mensaje inmediatamente
-        setChatDetail(prev => {
-            if (!prev) return prev;
-            const prevMsgs = prev.messages ?? [];
-            return { ...prev, messages: [...prevMsgs, new_message] };
-        });
+
+        setTimeout(
+            sendAutomaticMessage,
+            2000
+        )
     }
 
+
+    function sendAutomaticMessage() {
+        setContacts(
+            (prev_state) => {
+                return prev_state.map(
+                    (chat) => {
+                        if (Number(chat.id) === Number(chat_id)) {
+                            const nextId = (chat.messages?.reduce((max, m) => Math.max(max, m.id), 0) || 0) + 1;
+                            const new_message = {
+                                id: nextId,
+                                content: 'Tu mensaje fue recibido',
+                                author_id: chat.user_id,
+                                author_name: chat.name,
+                                created_at: 'Hoy',
+                                status: 'VIEWED'
+                            }
+                            return {
+                                ...chat,
+                                messages: [...(chat.messages || []), new_message]
+                            }
+                        }
+                        return chat
+                    }
+                )
+            }
+        )
+    }
 
     return (
         <div className="chat-screen-container">
