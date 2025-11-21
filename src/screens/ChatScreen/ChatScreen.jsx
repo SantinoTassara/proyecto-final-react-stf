@@ -110,7 +110,7 @@ const ChatScreen = () => {
                             const nextId = (chat.messages?.reduce((max, m) => Math.max(max, m.id), 0) || 0) + 1;
                             const new_message = {
                                 id: nextId,
-                                content: 'Tu mensaje fue recibido',
+                                content: 'Holaaa todo bien? ;)',
                                 author_id: chat.user_id,
                                 author_name: chat.name,
                                 created_at: 'Hoy',

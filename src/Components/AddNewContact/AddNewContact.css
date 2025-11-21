@@ -51,3 +51,15 @@
 .submit-btn:active {
     transform: scale(0.98);
 }
+
+@media (max-width: 480px) {
+    .add-contact-form-container {
+        margin: 12px;
+        padding: 14px;
+        max-width: 95%;
+    }
+
+    .form-group input {
+        font-size: 14px;
+    }
+}

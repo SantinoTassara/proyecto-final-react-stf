@@ -56,3 +56,21 @@
         height: 40px;
     }
 }
+
+@media (max-width: 480px) {
+    .message-input {
+        min-height: 44px;
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .send-message-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .input-row {
+        gap: 6px;
+    }
+}
