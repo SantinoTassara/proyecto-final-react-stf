@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getContacts } from "../../services/contactService.js";
-import ChatList from "../../components/ChatList/ChatList.jsx";
+import ChatList from "../../Components/ChatList/ChatList.jsx";
 import ChatDetail from "../../Components/ChatDetails/ChatDetails.jsx";
 
 import "./ChatScreen.css";
