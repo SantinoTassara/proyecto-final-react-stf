@@ -76,3 +76,30 @@
     color: var(--muted);
     opacity: 0.95;
 }
+
+.chat-list {
+    padding: 8px 6px;
+}
+
+
+@media (max-width: 480px) {
+    .chat-list>a>div {
+        grid-template-columns: 48px 1fr;
+        gap: 8px;
+        padding: 8px;
+        min-height: 56px;
+    }
+
+    .chat-list img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .chat-list h2 {
+        font-size: 14px;
+    }
+
+    .chat-list span {
+        font-size: 12px;
+    }
+}
